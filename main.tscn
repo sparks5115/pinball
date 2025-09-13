@@ -1,0 +1,107 @@
+[gd_scene load_steps=11 format=3 uid="uid://bck1ilqc24crv"]
+
+[ext_resource type="Texture2D" uid="uid://boykrwb64qt50" path="res://ball.png" id="1_c4fes"]
+[ext_resource type="Script" path="res://Ball.gd" id="1_gfe23"]
+[ext_resource type="PhysicsMaterial" uid="uid://b7h45xm40m7i7" path="res://ball.tres" id="1_qndu8"]
+[ext_resource type="Script" path="res://Flipper.gd" id="2_3med3"]
+[ext_resource type="Texture2D" uid="uid://d0gxcmsrtvfil" path="res://flipper.png" id="3_y3ufe"]
+[ext_resource type="PhysicsMaterial" uid="uid://drb71pk2yw13b" path="res://Flipper.tres" id="4_bauks"]
+[ext_resource type="Script" path="res://Plunger.gd" id="4_v04cy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q36yo"]
+radius = 50.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6ill8"]
+radius = 49.0
+height = 366.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qkpho"]
+size = Vector2(125.5, 456.5)
+
+[node name="Main" type="Node2D"]
+
+[node name="Ball" type="RigidBody2D" parent="."]
+position = Vector2(1274, 308)
+mass = 0.01
+physics_material_override = ExtResource("1_qndu8")
+gravity_scale = 5.0
+continuous_cd = 1
+script = ExtResource("1_gfe23")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_q36yo")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+texture = ExtResource("1_c4fes")
+
+[node name="walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="walls"]
+build_mode = 1
+polygon = PackedVector2Array(873, -1338, 0.0675659, -1192.1, 2, 636, 879, 935, 1159, 659, 1150, -632, 1198, -632, 1205, 698, 905, 1005, -55, 698, -40, -1247)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="walls"]
+polygon = PackedVector2Array(1343, 697, 1346, -1091, 1301, -1208, 1174, -1294, 1041, -1335, 873, -1335, 1082, -1402, 1346, -1224, 1397, -1097, 1400, 697)
+
+[node name="RFlipper" type="RigidBody2D" parent="."]
+position = Vector2(1152, 359)
+rotation = -1.91986
+mass = 5.18
+physics_material_override = ExtResource("4_bauks")
+freeze = true
+script = ExtResource("2_3med3")
+pressed_rotation = -70.0
+rest_rotation = -110.0
+speed = 30.0
+
+[node name="Sprite2D" type="Sprite2D" parent="RFlipper"]
+position = Vector2(1.90686, -2.46936)
+scale = Vector2(0.5, 0.75)
+texture = ExtResource("3_y3ufe")
+offset = Vector2(-6.1687, -189.909)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RFlipper"]
+position = Vector2(2.94684, -142.591)
+shape = SubResource("CapsuleShape2D_6ill8")
+
+[node name="LFlipper2" type="RigidBody2D" parent="."]
+position = Vector2(0, 326)
+rotation = -4.36332
+mass = 5.18
+physics_material_override = ExtResource("4_bauks")
+freeze = true
+freeze_mode = 1
+script = ExtResource("2_3med3")
+pressed_rotation = -290.0
+rest_rotation = -250.0
+speed = 30.0
+is_left = true
+
+[node name="Sprite2D" type="Sprite2D" parent="LFlipper2"]
+position = Vector2(0.43515, -0.117653)
+scale = Vector2(0.5, 0.75)
+texture = ExtResource("3_y3ufe")
+offset = Vector2(-10.7723, -187.247)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LFlipper2"]
+position = Vector2(-0.981079, -140.114)
+shape = SubResource("CapsuleShape2D_6ill8")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(758, -236)
+zoom = Vector2(0.25, 0.25)
+
+[node name="Plunger" type="RigidBody2D" parent="."]
+freeze = true
+freeze_mode = 1
+script = ExtResource("4_v04cy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plunger"]
+position = Vector2(1274, 595.75)
+shape = SubResource("RectangleShape2D_qkpho")
+
+[node name="ColorRect" type="ColorRect" parent="Plunger"]
+offset_left = 1212.0
+offset_top = 364.0
+offset_right = 1339.0
+offset_bottom = 822.0
