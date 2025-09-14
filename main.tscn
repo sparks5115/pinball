@@ -27,6 +27,7 @@ mass = 0.01
 physics_material_override = ExtResource("1_qndu8")
 gravity_scale = 5.0
 continuous_cd = 1
+can_sleep = false
 script = ExtResource("1_gfe23")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
