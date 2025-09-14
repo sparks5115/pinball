@@ -43,12 +43,10 @@ polygon = PackedVector2Array(873, -1338, 0.0675659, -1192.1, 2, 636, 879, 935, 1
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="walls"]
 polygon = PackedVector2Array(1343, 697, 1346, -1091, 1301, -1208, 1174, -1294, 1041, -1335, 873, -1335, 1082, -1402, 1346, -1224, 1397, -1097, 1400, 697)
 
-[node name="RFlipper" type="RigidBody2D" parent="."]
+[node name="RFlipper" type="AnimatableBody2D" parent="."]
 position = Vector2(1152, 359)
 rotation = -1.91986
-mass = 5.18
 physics_material_override = ExtResource("4_bauks")
-freeze = true
 script = ExtResource("2_3med3")
 pressed_rotation = -70.0
 rest_rotation = -110.0
@@ -64,13 +62,10 @@ offset = Vector2(-6.1687, -189.909)
 position = Vector2(2.94684, -142.591)
 shape = SubResource("CapsuleShape2D_6ill8")
 
-[node name="LFlipper2" type="RigidBody2D" parent="."]
+[node name="LFlipper2" type="AnimatableBody2D" parent="."]
 position = Vector2(0, 326)
 rotation = -4.36332
-mass = 5.18
 physics_material_override = ExtResource("4_bauks")
-freeze = true
-freeze_mode = 1
 script = ExtResource("2_3med3")
 pressed_rotation = -290.0
 rest_rotation = -250.0
