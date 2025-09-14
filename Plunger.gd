@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends AnimatableBody2D
 
 @export var rest_y = position.y          # starting Y position
 @export var max_pullback = 200    # max Y when pulled

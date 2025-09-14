@@ -86,9 +86,7 @@ shape = SubResource("CapsuleShape2D_6ill8")
 position = Vector2(758, -236)
 zoom = Vector2(0.25, 0.25)
 
-[node name="Plunger" type="RigidBody2D" parent="."]
-freeze = true
-freeze_mode = 1
+[node name="Plunger" type="AnimatableBody2D" parent="."]
 script = ExtResource("4_v04cy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Plunger"]
