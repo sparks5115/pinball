@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bck1ilqc24crv"]
+[gd_scene load_steps=12 format=3 uid="uid://bck1ilqc24crv"]
 
 [ext_resource type="Texture2D" uid="uid://boykrwb64qt50" path="res://ball.png" id="1_c4fes"]
 [ext_resource type="Script" path="res://Ball.gd" id="1_gfe23"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d0gxcmsrtvfil" path="res://flipper.png" id="3_y3ufe"]
 [ext_resource type="PhysicsMaterial" uid="uid://drb71pk2yw13b" path="res://Flipper.tres" id="4_bauks"]
 [ext_resource type="Script" path="res://Plunger.gd" id="4_v04cy"]
+[ext_resource type="Script" path="res://OOB.gd" id="8_ukpl8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q36yo"]
 radius = 50.0
@@ -15,13 +16,13 @@ radius = 50.0
 radius = 49.0
 height = 366.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qkpho"]
-size = Vector2(125.5, 456.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dv7n"]
+size = Vector2(953.353, 213)
 
 [node name="Main" type="Node2D"]
 
 [node name="Ball" type="RigidBody2D" parent="."]
-position = Vector2(1274, 308)
+position = Vector2(1274, 153)
 mass = 0.01
 physics_material_override = ExtResource("1_qndu8")
 gravity_scale = 5.0
@@ -87,14 +88,29 @@ position = Vector2(758, -236)
 zoom = Vector2(0.25, 0.25)
 
 [node name="Plunger" type="AnimatableBody2D" parent="."]
+position = Vector2(1274, 605)
 script = ExtResource("4_v04cy")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Plunger"]
-position = Vector2(1274, 595.75)
-shape = SubResource("RectangleShape2D_qkpho")
-
 [node name="ColorRect" type="ColorRect" parent="Plunger"]
-offset_left = 1212.0
-offset_top = 364.0
-offset_right = 1339.0
-offset_bottom = 822.0
+offset_left = -65.0
+offset_top = -231.0
+offset_right = 62.0
+offset_bottom = 227.0
+pivot_offset = Vector2(64, 231)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Plunger"]
+polygon = PackedVector2Array(-65, -232, -3, -216, 61, -230, 62, 227, -65, 226)
+
+[node name="OOB" type="Area2D" parent="."]
+position = Vector2(861, 870)
+scale = Vector2(1.09508, 1)
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("8_ukpl8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OOB"]
+position = Vector2(-229.207, 27.5)
+shape = SubResource("RectangleShape2D_2dv7n")
+
+[connection signal="body_entered" from="Ball" to="Ball" method="_on_body_entered"]
+[connection signal="body_entered" from="OOB" to="OOB" method="_on_body_entered"]

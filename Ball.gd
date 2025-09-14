@@ -1,11 +1,15 @@
 extends RigidBody2D
 
+@export var respawn_position: Vector2
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	# Store initial position if not manually set
+	if respawn_position == Vector2.ZERO:
+		respawn_position = global_position
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func respawn():
+	linear_velocity = Vector2.ZERO
+	angular_velocity = 0
+	sleeping = true
+	global_position = respawn_position
+	sleeping = false
